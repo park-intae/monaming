@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import { Header } from './components/Header.vue'
 </script>
 
 <template>
     <header>
-        <div id="header_top"></div>
-        <div id="header_meunu"></div>
+        {{ Header }}
     </header>
+
     <body></body>
     <footer></footer>
     <div id="top_btn"></div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
