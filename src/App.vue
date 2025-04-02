@@ -3,13 +3,17 @@ import Header from './components/Header.vue';
 </script>
 
 <template>
-    <header>
-        {{ Header }}
-    </header>
+    <div>
+        <header>
+            <Header />
+        </header>
 
-    <body></body>
-    <footer></footer>
-    <div id="top_btn"></div>
+        <main></main>
+
+        <footer></footer>
+
+        <div id="top_btn"></div>
+    </div>
 </template>
 
 <style scoped></style>
