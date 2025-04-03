@@ -32,28 +32,30 @@
 </template>
 
 <script>
+
 export default {
     name: 'Header',
     data() {
         return {
             sns: [
-                { name: 'Facebook', icon: '@/assets/sns_facebook.gif', link: '#' },
-                { name: 'instagram', icon: '@/assets/sns_insta.gif', link: '#' },
-                { name: 'youtube', icon: '@/assets/sns_youtube.png', link: '#' }
+                { name: 'Facebook', icon: '/assets/sns_facebook.gif', link: '#' },
+                { name: 'Instagram', icon: '/assets/sns_insta.gif', link: '#' },
+                { name: 'YouTube', icon: '/assets/sns_youtube.png', link: '#' }
             ],
             topMenu: [
                 { name: 'HOME', link: '#' },
                 { name: 'SITE MAP', link: '#' },
                 { name: 'CONTACT US', link: '#' },
             ],
+            selectedLang: '한국어', // 언어 기본값
         }
     },
     props: {
         langs: {
             type: Array,
             default: () => [
-                { emoji: 'kr', name: '한국어' },
-                { emoji: 'en', name: 'English' },
+                { emoji: '🇰🇷', name: '한국어' },
+                { emoji: '🇺🇸', name: 'English' },
             ],
         },
     }
