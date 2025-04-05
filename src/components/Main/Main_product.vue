@@ -17,14 +17,15 @@
         <span>INFO</span>
       </div>
       <div id="contents">
-        <Main_product_list />
-        <Main_product_detail />
+        <Main_product_list v-if="!productStore.selectedProduct" />
+        <Main_product_detail v-else :product="productStore.selectedProduct" @go-back="productStore.clearProduct" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useProductStore } from '@/stores/productStore.js';
 import Main_product_list from './Main_product_list.vue';
 import Main_product_detail from './Main_product_detail.vue';
 
@@ -33,6 +34,12 @@ export default {
   components: {
     Main_product_list,
     Main_product_detail
+  },
+  setup() {
+    const productStore = useProductStore();
+    return {
+      productStore,
+    };
   },
   data() {
     return {

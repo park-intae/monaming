@@ -21,13 +21,17 @@
                     </div>
                     <div id="p_info"></div>
                 </div>
-                <div id="view_btn"></div>
+                <div id="view_btn">
+                    <button @click="goBack">List</button>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { useProductStore } from '@/stores/productStore';
+
 export default {
     name: 'Main_product_detail',
     data() {
@@ -39,6 +43,12 @@ export default {
                 { img: 'assets/premium/product4.jpg' },
             ],
         };
+    },
+    methods: {
+        goBack() {
+            const productStore = useProductStore();
+            productStore.clearProduct();
+        }
     }
 }
 </script>
