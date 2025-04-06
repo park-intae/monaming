@@ -1,22 +1,22 @@
 <template>
   <div class="container">
-    <div id="page-tit">
+    <div class="page-tit">
       <h2>모나미제품</h2>
       <p>모나미는 당신의 행복한 기록과 늘 함께합니다</p>
     </div>
-    <div id="pagetaps">
-      <div id="product_type">
+    <div class="pagetaps">
+      <div class="product_type">
         <ul>
           <li v-for="(item, index) in productType" :key="index">
             <a href="#">{{ item.name }}</a>
           </li>
         </ul>
       </div>
-      <div id="title">
+      <div class="title">
         <span>PRODUCT</span>
         <span>INFO</span>
       </div>
-      <div id="contents">
+      <div class="contents">
         <Main_product_list v-if="!productStore.selectedProduct" />
         <Main_product_detail v-else :product="productStore.selectedProduct" @go-back="productStore.clearProduct" />
       </div>

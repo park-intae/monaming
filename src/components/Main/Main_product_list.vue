@@ -1,11 +1,11 @@
 <template>
-    <div id="sub_contents1">
-        <ul id="sub_cate">
+    <div class="sub_contents1">
+        <ul class="sub_cate">
             <li v-for="(item, index) in subcate" :key="index">
                 <p>{{ item.name }}</p>
             </li>
         </ul>
-        <div id="product_list">
+        <div class="product_list">
             <ul>
                 <li v-for="(item, index) in product_list1" :key="index" @click="selectProduct(item)">
                     <div class="img_wrap">
@@ -18,9 +18,9 @@
                 </li>
             </ul>
         </div>
-        <div id="pagination">
+        <div class="pagination">
             <button>&lt;</button>
-            <div id="pagination_num">
+            <div class="pagination_num">
                 <button v-for="page in totalPages" :key="page">
                     {{ page.page }}
                 </button>
