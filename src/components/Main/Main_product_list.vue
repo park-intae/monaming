@@ -7,13 +7,13 @@
         </ul>
         <div class="product_list">
             <ul>
-                <li v-for="(item, index) in product_list1" :key="index" @click="selectProduct(item)">
+                <li v-for="product in products" :key="product.id" @click="emit(product)">
                     <div class="img_wrap">
-                        <img :src="item.img" />
+                        <img :src="product.img" />
                     </div>
                     <div class="product_info">
-                        <p>{{ item.cate }}</p>
-                        <p>{{ item.name }}</p>
+                        <p>{{ product.category }}</p>
+                        <p>{{ product.name }}</p>
                     </div>
                 </li>
             </ul>
@@ -31,20 +31,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watchEffect, onMounted } from 'vue';
 import { useProductStore } from '@/stores/productStore';
 
 const subcate = ref([
     { name: '고급볼펜' },
     { name: '만년필' },
     { name: '고급샤프' },
-]);
-const product_list1 = ref([
-    {
-        img: '..\assets\premium\product1.jpg',
-        cate: '프리미엄 팬',
-        name: '제니스7 데스크펜'
-    }
 ]);
 const totalPages = ref([
     { page: 1 },
@@ -54,6 +47,20 @@ const totalPages = ref([
 ]);
 
 const productStore = useProductStore();
+const products = ref([]);
+
+const emit = defineEmits(['selectProduct']);
+
+watchEffect(() => {
+    products.value = productStore.products;
+});
+
+onMounted(async () => {
+    if (productStore.products.length === 0) {
+        await productStore.fetchProducts();
+    }
+})
+
 const selectProduct = (product) => {
     productStore.selectProduct(product);
 }

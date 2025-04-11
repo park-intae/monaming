@@ -21,11 +21,13 @@ db.connect((err) => {
     console.log('MySQL 연결 성공!');
 });
 
+//products-attributes가져오기
 app.get('/api/products-attributes', (req, res) => {
     db.query('select * from products_attributes', (err, results) => {
         if (err) return res.status(500).send(err);
         res.json(results);
     });
+    console.log('제품-상세 호출 완료');
 });
 
 app.listen(port, () => {

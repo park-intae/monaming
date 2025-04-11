@@ -24,35 +24,34 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useProductStore } from '@/stores/productStore.js';
 import Main_product_list from './Main_product_list.vue';
 import Main_product_detail from './Main_product_detail.vue';
+import { onMounted } from 'vue';
 
-export default {
-  name: 'Main_product',
-  components: {
-    Main_product_list,
-    Main_product_detail
-  },
-  setup() {
-    const productStore = useProductStore();
-    return {
-      productStore,
-    };
-  },
-  data() {
-    return {
-      productType: [
-        { name: '프리미엄 펜' },
-        { name: '펜·펜슬' },
-        { name: '마카·컬러링' },
-        { name: '노트·사무용품' },
-        { name: '잉크·리필' },
-        { name: '카탈로그' },
-      ],
-    };
-  },
+//Pinia
+const productStore = useProductStore();
+
+//제품 타입리스트
+const productType = ref([
+  { name: '프리미엄 펜' },
+  { name: '펜·펜슬' },
+  { name: '마카·컬러링' },
+  { name: '노트·사무용품' },
+  { name: '잉크·리필' },
+  { name: '카탈로그' },
+]);
+
+onMounted(async () => {
+  const res = await fetch('/api/products');
+  const data = await res.json();
+  product.value = data;
+})
+
+const showDetail = async (product) => {
+  const res = await fetch(`/api/products/${product.Id}`);
+  productStore.selectedProduct = await res.json();
 }
 </script>
 
