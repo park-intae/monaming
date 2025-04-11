@@ -25,10 +25,10 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import { useProductStore } from '@/stores/productStore.js';
 import Main_product_list from './Main_product_list.vue';
 import Main_product_detail from './Main_product_detail.vue';
-import { onMounted } from 'vue';
 
 //Pinia
 const productStore = useProductStore();
@@ -43,6 +43,7 @@ const productType = ref([
   { name: '카탈로그' },
 ]);
 
+const product = ref([]);
 onMounted(async () => {
   const res = await fetch('/api/products');
   const data = await res.json();

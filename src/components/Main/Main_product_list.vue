@@ -7,7 +7,7 @@
         </ul>
         <div class="product_list">
             <ul>
-                <li v-for="product in products" :key="product.id" @click="emit(product)">
+                <li v-for="product in products" :key="product.id" @click="selectProduct(product)">
                     <div class="img_wrap">
                         <img :src="product.img" />
                     </div>
@@ -63,6 +63,7 @@ onMounted(async () => {
 
 const selectProduct = (product) => {
     productStore.selectProduct(product);
+    emit('selectProduct', product);
 }
 
 const goToPage = (pageNum) => {
