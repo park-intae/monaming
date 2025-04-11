@@ -8,7 +8,7 @@ export const useProductStore = defineStore('product', {
     actions: {
         async fetchProducts() {
             try {
-                const res = await fetch('/api/products');
+                const res = await fetch('/api/product-attributes');
                 this.products = await res.json();
             } catch (error) {
                 console.error('제품 목록 불러오기 실패:', error)

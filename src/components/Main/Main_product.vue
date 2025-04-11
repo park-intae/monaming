@@ -45,13 +45,13 @@ const productType = ref([
 
 const product = ref([]);
 onMounted(async () => {
-  const res = await fetch('/api/products');
+  const res = await fetch('/api/product-attributes');
   const data = await res.json();
   product.value = data;
 })
 
 const showDetail = async (product) => {
-  const res = await fetch(`/api/products/${product.Id}`);
+  const res = await fetch(`/api/product-attributes/${product.Id}`);
   productStore.selectedProduct = await res.json();
 }
 </script>

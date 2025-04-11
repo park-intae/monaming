@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "frontend": "vite",
-    "backend": "node backend/server.js",
+    "backend": "node backend/index.js",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"

@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -26,12 +26,12 @@ app.use(express.json());
 
 //실행시 백엔드 연결
 app.get('/', (req, res) => {
-    res.json({ message: '3001포트 백엔드 연결' });
+    res.json({ message: '3000포트 백엔드 연결' });
 });
 
 //products-attributes가져오기
-app.get('/api/products-attributes', (req, res) => {
-    db.query('select * from products_attributes', (err, results) => {
+app.get('/api/product-attributes', (req, res) => {
+    db.query('select * from product_attributes', (err, results) => {
         if (err) return res.status(500).send(err);
         res.json(results);
     });
