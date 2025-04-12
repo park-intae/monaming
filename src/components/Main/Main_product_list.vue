@@ -61,8 +61,9 @@ onMounted(async () => {
     }
 })
 
-const selectProduct = (product) => {
+const selectProduct = async (product) => {
     productStore.selectProduct(product);
+    await productStore.fetchProductAttributes(product.id);
     emit('selectProduct', product);
 }
 

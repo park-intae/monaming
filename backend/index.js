@@ -29,6 +29,15 @@ app.get('/', (req, res) => {
     res.json({ message: '3000포트 백엔드 연결' });
 });
 
+//products 가져오기
+app.get('/api/products', (req, res) => {
+    db.query('select * from products', (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.json(result);
+    })
+    console.log('products 호출 완료')
+})
+
 //products-attributes가져오기
 app.get('/api/product-attributes', (req, res) => {
     db.query('select * from product_attributes', (err, results) => {
