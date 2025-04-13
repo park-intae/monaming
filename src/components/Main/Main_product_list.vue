@@ -9,7 +9,7 @@
             <ul>
                 <li v-for="product in products" :key="product.id" @click="selectProduct(product)">
                     <div class="img_wrap">
-                        <img :src="product.img" />
+                        <img :src="product.img" alt="상품이미지" />
                     </div>
                     <div class="product_info">
                         <p>{{ product.category }}</p>

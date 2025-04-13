@@ -46,6 +46,30 @@ app.get('/api/product-attributes', (req, res) => {
     });
     console.log('제품-상세 호출 완료');
 });
+//product-attributes에서 제품정보 가져오기
+app.get('/api/product-attributes/:id', (req, res) => {
+    const id = req.params.id;
+
+    const query = `
+        SELECT a.name AS attribute_name, pa.value
+        FROM product_attributes pa
+        JOIN attributes a ON pa.attribute_id = a.id
+        WHERE pa.product_id = ?
+        `;
+
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error('DB오류:', err);
+            return res.status(500).json({ error: '서버오류' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: '제품 속성을 찾을 수 없습니다' });
+        }
+
+        res.json(results);
+    })
+});
 
 app.listen(PORT, () => {
     console.log(`서버가 http://localhost:${PORT}에서 실행 중`);

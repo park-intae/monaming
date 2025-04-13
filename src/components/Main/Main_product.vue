@@ -51,7 +51,10 @@ onMounted(async () => {
 })
 
 const showDetail = async (product) => {
+  console.log('product 선택됨:', product);
   const res = await fetch(`/api/product-attributes/${product.Id}`);
+  const data = await res.json();
+  console.log('상세데이터:', data);
   productStore.selectedProduct = await res.json();
 }
 </script>
