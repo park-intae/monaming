@@ -7,7 +7,7 @@
         </ul>
         <div class="product_list">
             <ul>
-                <li v-for="product in products" :key="product.id" @click="selectProduct(product)">
+                <li v-for="product in paginatedProducts" :key="product.id" @click="selectProduct(product)">
                     <div class="img_wrap">
                         <img :src="product.img" alt="상품이미지" />
                     </div>
@@ -19,31 +19,26 @@
             </ul>
         </div>
         <div class="pagination">
-            <button>&lt;</button>
+            <button @click="prevPage" :disabled="currentPage === 1">&lt;</button>
             <div class="pagination_num">
-                <button v-for="page in totalPages" :key="page.page" @click="goToPage(page.page)">
-                    {{ page.page }}
+                <button v-for="page in totalPages" :key="page" @click="goToPage(page)"
+                    :class="{ active: currentPage === page }">
+                    {{ page }}
                 </button>
             </div>
-            <button>&gt;</button>
+            <button @click="nextPage" :disabled="currentPage === totalPages">&gt;</button>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, watchEffect, onMounted } from 'vue';
+import { ref, watchEffect, onMounted, computed, watch } from 'vue';
 import { useProductStore } from '@/stores/productStore';
 
 const subcate = ref([
     { name: '고급볼펜' },
     { name: '만년필' },
     { name: '고급샤프' },
-]);
-const totalPages = ref([
-    { page: 1 },
-    { page: 2 },
-    { page: 3 },
-    { page: 4 },
 ]);
 
 const productStore = useProductStore();
@@ -67,9 +62,34 @@ const selectProduct = async (product) => {
     emit('selectProduct', product);
 }
 
+//페이지네이션
+const currentPage = ref(1);
+const itemsPerPage = 10;
+
+const paginatedProducts = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return productStore.products.slice(start, end);
+});
+
+const totalPages = computed(() => {
+    return Math.ceil(productStore.products.length / itemsPerPage);
+})
+
 const goToPage = (pageNum) => {
+    currentPage.value = pageNum;
     console.log(`Go to page ${pageNum}`);
-    // 페이지 이동 로직 추가 필요
+}
+
+const prevPage = () => {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+}
+const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
 }
 </script>
 

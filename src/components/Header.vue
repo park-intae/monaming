@@ -47,7 +47,7 @@
                 <div id="search">
                     <input type="text" />
                     <a>
-                        <img src="..\assets\btn_search.gif" alt="search" />
+                        <img src="\assets\btn_search.gif" alt="search" />
                     </a>
                 </div>
                 <div id="all_btn">
@@ -62,10 +62,6 @@
 
 <script setup>
 import { ref } from 'vue';
-
-import youtubeIcon from '@/assets/sns_youtube.png';
-import facebookIcon from '@/assets/sns_facebook.gif';
-import instaIcon from '@/assets/sns_insta.gif';
 
 const props = defineProps({
     langs: {
@@ -146,9 +142,9 @@ const langs = ref([
 ]);
 // sns
 const sns = ref([
-    { name: 'Facebook', icon: facebookIcon, link: '#' },
-    { name: 'Instagram', icon: instaIcon, link: '#' },
-    { name: 'YouTube', icon: youtubeIcon, link: '#' }
+    { name: 'Facebook', icon: '/assets/sns_facebook.gif', link: '#' },
+    { name: 'Instagram', icon: '/assets/sns_insta.gif', link: '#' },
+    { name: 'YouTube', icon: '/assets/sns_youtube.png', link: '#' }
 ]);
 // topMenu
 const topMenu = ref([

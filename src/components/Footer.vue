@@ -3,7 +3,7 @@
         <div id="foot_pop"></div>
         <div id="foot_top">
             <h1>
-                <img src="..\assets\foot_logo.jpg" alt="logo" />
+                <img src="\assets\foot_logo.jpg" alt="logo" />
             </h1>
             <ul id="fm">
                 <li v-for="(item, index) in fm" :key="index">

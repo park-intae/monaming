@@ -10,10 +10,13 @@
                     <div class="p_gall">
                         <div class="big"></div>
                         <div class="small_thumb_wrap">
-                            <div class="tprev"></div>
+                            <div class="tprev">
+                                <img :src="bigImage" />
+                            </div>
                             <ul>
-                                <li v-for="(item, index) in mergedProduct.thumb" :key="index">
-                                    <img :src="item.img" />
+                                <li v-for="(item, index) in mergedProduct.thumb" :key="index"
+                                    @click="setBigImage(item.url)">
+                                    <img :src="item.url" />
                                 </li>
                             </ul>
                             <div class="tnext">
@@ -77,7 +80,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useProductStore } from '@/stores/productStore';
 
 const props = defineProps({
@@ -105,6 +108,7 @@ const mergedProduct = computed(() => {
     console.log('🚨 product:', props.product);
     console.log('🚨 productAttributes:', store.productAttributes);
     console.log('🟢 mergedProduct:', { ...props.product, ...attrObject });
+    console.log(attrObject.thumb);
 
     return {
         ...props.product,
@@ -127,6 +131,17 @@ const parsedKeyFeatures = computed(() => {
     // 이미 text가 있는 객체 배열인 경우
     return features;
 });
+
+const bigImage = ref(''); // 대표 이미지 상태
+
+onMounted(() => {
+    bigImage.value = mergedProduct.value.big_thumb || '';
+}); //초기 대표이미지
+
+const setBigImage = (url) => {
+    bigImage.value = url;
+};
+
 </script>
 
 <style></style>
