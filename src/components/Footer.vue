@@ -1,9 +1,9 @@
 <template>
-    <div id="foot">
+    <div id="foot" @click="handleOutsideClick">
         <div id="foot_pop"></div>
         <div id="foot_top">
             <h1>
-                <img src="\assets\foot_logo.jpg" alt="logo" />
+                <img src="\img\foot_logo.jpg" alt="logo" />
             </h1>
             <ul id="fm">
                 <li v-for="(item, index) in fm" :key="index">
@@ -38,8 +38,9 @@
 </template>
 
 <script setup>
+import { useUIStore } from '../stores/uiStore';
 import { useModalStore } from '@/stores/modalStore';
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeMount } from 'vue';
 
 const modalStore = useModalStore();
 
@@ -63,8 +64,21 @@ const familySite = [
     { name: '모나미코스메틱', link: '#' },
 ];
 
+// 모달 관련
+const uiStore = useUIStore();
+
 function handleClick(item) {
-    modalStore.open(type);
+    modalStore.open(item);
+}
+
+function handleOutsideClick(e) {
+    const modalEle = document.querySelector('.modal');
+
+    if (!modalEle) return;
+
+    if (!modalEle?.contains(e.target)) {
+        uiStore.closeAll();
+    }
 }
 
 </script>

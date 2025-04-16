@@ -1,62 +1,82 @@
 <template>
-    <div id="header_top">
-        <div id="conwrap">
-            <div id="links">
-                <div id="langs">
-                    <select v-model="selectedLang">
-                        <option v-for="(lang, index) in langs" :key="index" :value="lang.name">
-                            {{ lang.emoji }} {{ lang.name }}
-                        </option>
-                    </select>
+    <div id="header">
+        <div class="header_top">
+            <div class="conwrap">
+                <div class="links">
+                    <div class="langs">
+                        <div class="dropdown">
+                            <div class="dropdown-btn" @click="toggleDropdown()">
+                                <a>
+                                    {{ selectedLang.name }}
+                                </a>
+                                <img class="dropdown-icon" src="/img/chevron-compact-down.svg" />
+                            </div>
+                            <div class="dropdown-content" :class="{ on: isDropdownOpen }">
+                                <div v-for="(lang, index) in langs" :key="index" class="dropdown-item">
+                                    <a href="#">
+                                        {{ lang.name }}
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <ul class="dropdown-content" :class="{ show: isDropdownOpen }">
+                                <li v-for="(lang, index) in langs" :key="index">
+                                    {{ lang.emoji }} {{ lang.name }}
+                                </li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="sns">
+                        <ul>
+                            <li v-for="(item, index) in sns" :key="index">
+                                <a :href="item.link" target="_blank" rel="noopener noreferrer">
+                                    <img :src="item.icon" :alt="item.name" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="sns">
+                <div class="topMenu">
                     <ul>
-                        <li v-for="(item, index) in sns" :key="index">
-                            <a :href="item.link" target="_blank" rel="noopener noreferrer">
-                                <img :src="item.icon" :alt="item.name" />
-                            </a>
+                        <li v-for="(item, index) in topMenu" :key="index">
+                            <a :href="item.link">{{ item.name }}</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div id="topMenu">
-                <ul>
-                    <li v-for="(item, index) in topMenu" :key="index">
-                        <a :href="item.link">{{ item.name }}</a>
-                    </li>
-                </ul>
-            </div>
         </div>
-    </div>
-    <div id="header_menu">
-        <nav>
-            <div id="logo"></div>
-            <div id="menu">
-                <ul>
-                    <li v-for="(item, index) in mainMenu" :key="index">
-                        <a :href="item.link">{{ item.name }}</a>
-                        <ul v-if="item.subMenu && item.subMenu.length > 0">
-                            <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex">
-                                <a :href="subItem.link">{{ subItem.name }}</a>
+        <div class="header_menu">
+            <div class="gnb">
+                <div class="conwrap">
+                    <div class="logo">
+                        <img src="\img\logo.jpg">
+                    </div>
+                    <div class="nav">
+                        <ul class="dropdown nav">
+                            <li class="menuEle" v-for="(item, index) in mainMenu" :key="index">
+                                <a :href="item.link">{{ item.name }}</a>
+                                <ul class="display-non" v-if="item.subMenu && item.subMenu.length > 0">
+                                    <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex">
+                                        <a :href="subItem.link">{{ subItem.name }}</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-            <div id="toolbar">
-                <div id="search">
-                    <input type="text" />
-                    <a>
-                        <img src="\assets\btn_search.gif" alt="search" />
-                    </a>
+                        <div class="toolbar">
+                            <div class="search">
+                                <a>
+                                    <img src="\img\btn_search.gif" alt="search" />
+                                </a>
+                            </div>
+                            <div class="all_btn">
+                                <div class="all_btn_ele"></div>
+                                <div class="all_btn_ele"></div>
+                                <div class="all_btn_ele"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="all_btn">
-                    <div class="all_btn_ele"></div>
-                    <div class="all_btn_ele"></div>
-                    <div class="all_btn_ele"></div>
-                </div>
             </div>
-        </nav>
+        </div>
     </div>
 </template>
 
@@ -67,8 +87,8 @@ const props = defineProps({
     langs: {
         type: Array,
         default: () => [
-            { emoji: '🇰🇷', name: '한국어' },
-            { emoji: '🇺🇸', name: 'English' },
+            { emoji: '🇰🇷', name: 'KOR' },
+            { emoji: '🇺🇸', name: 'ENG' },
         ],
     }
 })
@@ -135,16 +155,17 @@ const mainMenu = ref([
     },
 ]);
 //lang
-const selectedLang = ref('한국어'); // 언어 기본값
+const selectedLang = ref({ //기본 언어
+    name: 'KOR'
+});
 const langs = ref([
-    { emoji: '🇰🇷', name: '한국어' },
-    { emoji: '🇺🇸', name: 'English' },
+    { name: 'ENG' },
 ]);
 // sns
 const sns = ref([
-    { name: 'Facebook', icon: '/assets/sns_facebook.gif', link: '#' },
-    { name: 'Instagram', icon: '/assets/sns_insta.gif', link: '#' },
-    { name: 'YouTube', icon: '/assets/sns_youtube.png', link: '#' }
+    { name: 'Facebook', icon: '/img/sns_facebook.gif', link: '#' },
+    { name: 'Instagram', icon: '/img/sns_insta.gif', link: '#' },
+    { name: 'YouTube', icon: '/img/sns_youtube.png', link: '#' }
 ]);
 // topMenu
 const topMenu = ref([
@@ -152,7 +173,68 @@ const topMenu = ref([
     { name: 'SITE MAP', link: '#' },
     { name: 'CONTACT US', link: '#' },
 ]);
+// dropdown
+const isDropdownOpen = ref(false);
+
+const toggleDropdown = () => {
+    console.log('클릭감지');
+    console.log(isDropdownOpen)
+    isDropdownOpen.value = !isDropdownOpen.value;
+    console.log(isDropdownOpen)
+};
 
 </script>
 
-<style></style>
+<style>
+.conwrap {
+    width: 94%;
+}
+
+.logo {
+    float: none;
+    width: 162px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* dropdown */
+.dropdown-content.on {
+    display: block;
+}
+
+.dropdown-icon {
+    width: 13px;
+    height: auto;
+}
+
+.dropdown-btn {
+    padding-left: 15px;
+    background: url(/img/lang_kor.gif) no-repeat 10px center;
+}
+
+.dropdown-btn a {
+    display: block;
+    width: 38px;
+    padding-left: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: #000;
+    background: url(/images/common/lang_arr.gif) no-repeat right center;
+}
+
+.menuEle {
+    height: 88;
+    border: 1px solid black;
+}
+
+.display-non {
+    display: none;
+}
+</style>

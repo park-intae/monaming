@@ -16,7 +16,7 @@
                             <ul>
                                 <li v-for="(item, index) in mergedProduct.thumb" :key="index"
                                     @click="setBigImage(item.url)">
-                                    <img :src="item.url" />
+                                    <img :src="`/img/${item.url}`" />
                                 </li>
                             </ul>
                             <div class="tnext">
