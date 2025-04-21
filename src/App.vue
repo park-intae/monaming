@@ -56,4 +56,11 @@ option {
     font-size: 13.5px;
     font-weight: normal;
 }
+
+img,
+input,
+select,
+textarea {
+    vertical-align: middle;
+}
 </style>

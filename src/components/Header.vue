@@ -9,7 +9,6 @@
                                 <a>
                                     {{ selectedLang.name }}
                                 </a>
-                                <img class="dropdown-icon" src="/img/chevron-compact-down.svg" />
                             </div>
                             <div class="dropdown-content" :class="{ on: isDropdownOpen }">
                                 <div v-for="(lang, index) in langs" :key="index" class="dropdown-item">
@@ -18,11 +17,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- <ul class="dropdown-content" :class="{ show: isDropdownOpen }">
-                                <li v-for="(lang, index) in langs" :key="index">
-                                    {{ lang.emoji }} {{ lang.name }}
-                                </li>
-                            </ul> -->
                         </div>
                     </div>
                     <div class="sns">
@@ -47,31 +41,43 @@
         <div class="header_menu">
             <div class="gnb">
                 <div class="conwrap">
-                    <div class="logo">
-                        <img src="\img\logo.jpg">
-                    </div>
+                    <h1 class="logo">
+                        <a href="#">
+                            <img src="\img\logo.jpg">
+                        </a>
+                    </h1>
                     <div class="nav">
-                        <ul class="dropdown nav">
-                            <li class="menuEle" v-for="(item, index) in mainMenu" :key="index">
+                        <ul class="dropdown">
+                            <li class="menuEle" v-for="(item, index) in mainMenu" :key="index"
+                                @mouseenter="hoverIndex = index" @mouseleave="hoverIndex = null">
                                 <a :href="item.link">{{ item.name }}</a>
-                                <ul class="display-non" v-if="item.subMenu && item.subMenu.length > 0">
+                                <ul class="dropdown-content" v-if="isDropdownVisible.value">
                                     <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex">
-                                        <a :href="subItem.link">{{ subItem.name }}</a>
+                                        <template v-if="item.subMenu && item.subMenu.length > 0">
+                                            <div class="submenu-group">
+                                                <div class="submenu-title">{{ item.name }}</div>
+                                                <ul>
+                                                    <li v-for="(subItem, j) in item.subMenu" :key="j">
+                                                        <a :href="subItem.link">{{ subItem.name }}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </template>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        <div class="toolbar">
-                            <div class="search">
-                                <a>
-                                    <img src="\img\btn_search.gif" alt="search" />
-                                </a>
-                            </div>
-                            <div class="all_btn">
-                                <div class="all_btn_ele"></div>
-                                <div class="all_btn_ele"></div>
-                                <div class="all_btn_ele"></div>
-                            </div>
+                    </div>
+                    <div class="toolbar">
+                        <div class="all_btn" :class="{ open: isOpen }" @click="isOpen = !isOpen">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="search">
+                            <a>
+                                <img src="\img\btn_search.gif" alt="search" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -177,31 +183,23 @@ const topMenu = ref([
 const isDropdownOpen = ref(false);
 
 const toggleDropdown = () => {
-    console.log('클릭감지');
     console.log(isDropdownOpen)
     isDropdownOpen.value = !isDropdownOpen.value;
     console.log(isDropdownOpen)
 };
-
+// all_btn hamburger
+const isOpen = ref(false);
+// hover
+const isDropdownVisible = ref(false);
 </script>
 
 <style>
-.conwrap {
-    width: 94%;
-}
-
 .logo {
     float: none;
     width: 162px;
     position: absolute;
     left: 0;
     top: 0;
-}
-
-.nav {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
 }
 
 /* dropdown */
@@ -226,12 +224,7 @@ const toggleDropdown = () => {
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
     color: #000;
-    background: url(/images/common/lang_arr.gif) no-repeat right center;
-}
-
-.menuEle {
-    height: 88;
-    border: 1px solid black;
+    background: url(/img/lang_arr.gif) no-repeat right center;
 }
 
 .display-non {
