@@ -1,0 +1,111 @@
+.foot {
+    width: 94%;
+    margin: 0 auto;
+    padding: 0 3%;
+}
+
+.foot_top {
+    width: 100%;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.fm {
+    color: #fff;
+    font-size: 14px;
+}
+
+.foot_btm {
+    padding-top: 20px;
+    display: flex;
+    justify-content: start;
+}
+
+.info {
+    width: auto;
+}
+
+.info>p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.address {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.address>div {
+    padding-right: 10px;
+    border-right: 1px solid #555;
+}
+
+.CC {
+    margin-left: 5%;
+    margin-right: auto;
+}
+
+.CC_tit {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.CC_tel {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.kakao_btn {
+    display: inline-block;
+    width: 155px;
+    height: 32px;
+    line-height: 31px;
+    margin-top: 15px;
+    color: #dfdfdf;
+    text-align: center;
+    border: 1px solid #878787;
+    background: #4a4a4a;
+    border-radius: 6px;
+}
+
+.family_site {
+    float: right;
+    position: relative;
+    width: 242px;
+    height: 34px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+.family_site .dropdown {
+    padding-left: 13px
+}
+
+.family_site .tit {
+    line-height: 34px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    background: url(/img/family_arr.png) no-repeat 95% center;
+}
+
+/* .family_site::after {
+    content: "";
+    display: block;
+    width: 9px;
+    height: 5px;
+    background: url(/images/common/family_arr.png) no-repeat 95% center;
+    background-size: contain;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+} */

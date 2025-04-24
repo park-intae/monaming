@@ -1,37 +1,49 @@
 <template>
-    <div id="foot" @click="handleOutsideClick">
-        <div id="foot_pop"></div>
-        <div id="foot_top">
-            <h1>
-                <img src="\img\foot_logo.jpg" alt="logo" />
-            </h1>
-            <ul id="fm">
-                <li v-for="(item, index) in fm" :key="index">
-                    <a href="#" @click:prevent="handleClick(type.item)">{{ item.name }}</a>
-                </li>
-            </ul>
-        </div>
-        <div id="foot_btm">
-            <div id="info">
-                <p>INFO</p>
-                <div id="address">
-                    <div v-for="(item, index) in info" :key="index">
-                        <span>{{ item.name }}</span> : <span>{{ item.contents }}</span> |
-                    </div>
-                    <p>COPYRIGHT(C) MONAMI.CO.,LTD. ALL RIGHTS RESERVED.</p>
-                </div>
-            </div>
-            <div id="CC">
-                <div id="CC_tit"></div>
-                <div id="CC_tel"></div>
-                <button id="kakao_btn">카카오톡 문의></button>
-            </div>
-            <div id="family_site">
-                <ul>
-                    <li v-for="(item, index) in familySite" :key="index">
-                        <a :href="item.link">{{ item.name }}</a>
+    <div id="footer">
+        <div class="foot" @click="handleOutsideClick">
+            <div class="foot_pop"></div>
+            <div class="foot_top">
+                <h1>
+                    <img src="\img\foot_logo.jpg" alt="logo" />
+                </h1>
+                <ul class="fm">
+                    <li v-for="(item, index) in fm" :key="index">
+                        <a href="#" @click:prevent="handleClick(type.item)">{{ item.name }}</a>
                     </li>
                 </ul>
+            </div>
+            <div class="foot_btm">
+                <div class="info">
+                    <p>INFO</p>
+                    <div class="address">
+                        <div v-for="(item, index) in info" :key="index">
+                            <span>{{ item.name }}</span> : <span>{{ item.contents }}</span>
+                        </div>
+                    </div>
+                    <p>COPYRIGHT(C) MONAMI.CO.,LTD. ALL RIGHTS RESERVED.</p>
+                    <!-- 해당 프로젝트는 단순 클론코딩으로 어떠한 수익도 창출할 의도가 없습니다
+                     원작 페이지의 저작권을 존중합니다 -->
+                </div>
+                <div class="CC">
+                    <div class="CC_tit">CUSTOMER CENTER</div>
+                    <div class="CC_tel">000-000-0000</div>
+                    <button class="kakao_btn">카카오톡 문의></button>
+                </div>
+                <div class="family_site">
+                    <div class="dropdown">
+                        <div class="tit" @click="handleClick">FAMILY SITE</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                    </div>
+                    <!-- <ul>
+                        <li v-for="(item, index) in familySite" :key="index">
+                            <a :href="item.link">{{ item.name }}</a>
+                        </li>
+                    </ul> -->
+                </div>
             </div>
         </div>
     </div>
@@ -83,4 +95,11 @@ function handleOutsideClick(e) {
 
 </script>
 
-<style></style>
+<style>
+#footer {
+    width: 100%;
+    position: relative;
+    background-color: #111111;
+    padding: 60px 0 65px;
+}
+</style>
