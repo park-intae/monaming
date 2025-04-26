@@ -14,7 +14,7 @@
             </div>
             <div class="foot_btm">
                 <div class="info">
-                    <p>INFO</p>
+                    <p class="tit ">INFO</p>
                     <div class="address">
                         <div v-for="(item, index) in info" :key="index">
                             <span>{{ item.name }}</span> : <span>{{ item.contents }}</span>
@@ -30,19 +30,16 @@
                     <button class="kakao_btn">카카오톡 문의></button>
                 </div>
                 <div class="family_site">
-                    <div class="dropdown">
-                        <div class="tit" @click="handleClick">FAMILY SITE</div>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div>5</div>
+                    <div class="dropdown" :class="{ open: isFmDropdownOpen }" @click.stop="toggleFmDropdown">
+                        <div class="tit">FAMILY SITE</div>
+                        <div class="dropdown-contents">
+                            <ul>
+                                <li v-for="(item, index) in familySite" :key="index">
+                                    <a :href="item.link">{{ item.name }}</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- <ul>
-                        <li v-for="(item, index) in familySite" :key="index">
-                            <a :href="item.link">{{ item.name }}</a>
-                        </li>
-                    </ul> -->
                 </div>
             </div>
         </div>
@@ -51,8 +48,8 @@
 
 <script setup>
 import { useUIStore } from '../stores/uiStore';
+import { storeToRefs } from 'pinia';
 import { useModalStore } from '@/stores/modalStore';
-import { ref, onMounted, onBeforeMount } from 'vue';
 
 const modalStore = useModalStore();
 
@@ -78,6 +75,8 @@ const familySite = [
 
 // 모달 관련
 const uiStore = useUIStore();
+const { isFmDropdownOpen } = storeToRefs(uiStore); // ✨ 반응형으로 꺼냄
+const { toggleFmDropdown, closeAll } = uiStore;
 
 function handleClick(item) {
     modalStore.open(item);
@@ -85,11 +84,8 @@ function handleClick(item) {
 
 function handleOutsideClick(e) {
     const modalEle = document.querySelector('.modal');
-
-    if (!modalEle) return;
-
-    if (!modalEle?.contains(e.target)) {
-        uiStore.closeAll();
+    if (modalEle && !modalEle.contains(e.target)) {
+        closeAll();
     }
 }
 

@@ -27,7 +27,7 @@
     width: auto;
 }
 
-.info>p {
+.info .tit {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     color: #fff;
@@ -77,7 +77,8 @@
 }
 
 .family_site {
-    float: right;
+    display: flex;
+    justify-self: end;
     position: relative;
     width: 242px;
     height: 34px;
@@ -87,7 +88,9 @@
 }
 
 .family_site .dropdown {
-    padding-left: 13px
+    width: 100%;
+    padding-left: 13px;
+    margin: 0;
 }
 
 .family_site .tit {
@@ -97,15 +100,12 @@
     background: url(/img/family_arr.png) no-repeat 95% center;
 }
 
-/* .family_site::after {
-    content: "";
-    display: block;
-    width: 9px;
-    height: 5px;
-    background: url(/images/common/family_arr.png) no-repeat 95% center;
-    background-size: contain;
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%) rotate(180deg);
-} */
+.family_site .dropdown-contents {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.dropdown.open .dropdown-contents {
+    max-height: 500px;
+}
