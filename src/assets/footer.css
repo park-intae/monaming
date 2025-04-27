@@ -1,111 +1,147 @@
 .foot {
-    width: 94%;
-    margin: 0 auto;
-    padding: 0 3%;
+  width: 94%;
+  margin: 0 auto;
+  padding: 0 3%;
 }
 
 .foot_top {
-    width: 100%;
-    padding-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
 }
 
 .fm {
-    color: #fff;
-    font-size: 14px;
+  color: #fff;
+  font-size: 14px;
 }
 
 .foot_btm {
-    padding-top: 20px;
-    display: flex;
-    justify-content: start;
+  padding-top: 20px;
+  display: flex;
+  justify-content: start;
 }
 
 .info {
-    width: auto;
+  width: auto;
 }
 
 .info .tit {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    color: #fff;
-    margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .address {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.address>div {
-    padding-right: 10px;
-    border-right: 1px solid #555;
+.address > div {
+  padding-right: 10px;
+  border-right: 1px solid #555;
 }
 
 .CC {
-    margin-left: 5%;
-    margin-right: auto;
+  margin-left: 5%;
+  margin-right: auto;
 }
 
 .CC_tit {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    color: #fff;
-    margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .CC_tel {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    color: rgba(255, 255, 255, 0.5);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .kakao_btn {
-    display: inline-block;
-    width: 155px;
-    height: 32px;
-    line-height: 31px;
-    margin-top: 15px;
-    color: #dfdfdf;
-    text-align: center;
-    border: 1px solid #878787;
-    background: #4a4a4a;
-    border-radius: 6px;
+  display: inline-block;
+  width: 155px;
+  height: 32px;
+  line-height: 31px;
+  margin-top: 15px;
+  color: #dfdfdf;
+  text-align: center;
+  border: 1px solid #878787;
+  background: #4a4a4a;
+  border-radius: 6px;
 }
 
 .family_site {
-    display: flex;
-    justify-self: end;
-    position: relative;
-    width: 242px;
-    height: 34px;
-    text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
+  display: flex;
+  justify-self: end;
+  position: relative;
+  width: 242px;
+  height: 34px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
 }
 
 .family_site .dropdown {
-    width: 100%;
-    padding-left: 13px;
-    margin: 0;
+  width: 100%;
+  padding-left: 13px;
+  margin: 0;
 }
 
 .family_site .tit {
-    line-height: 34px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
-    background: url(/img/family_arr.png) no-repeat 95% center;
+  line-height: 34px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.family_site .tit::after {
+  content: '';
+  display: inline-block;
+  padding: 0 13px;
+  width: 9px;
+  height: 5px;
+  background: url(/img/family_arr.png) no-repeat 95% center;
+  right: 5%;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .family_site .dropdown-contents {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+  display: none;
+  background: rgba(0, 0, 0, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 0;
+  position: absolute;
+  left: -1px;
+  bottom: 100%;
+  width: 242px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.family_site li {
+  display: block;
+}
+
+.family_site li a {
+  display: block;
+  padding: 0 13px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .dropdown.open .dropdown-contents {
-    max-height: 500px;
+  display: block;
+}
+
+.dropdown.open .dropdown-contents {
+  max-height: 500px;
 }

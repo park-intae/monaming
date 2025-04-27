@@ -32,13 +32,11 @@
                 <div class="family_site">
                     <div class="dropdown" :class="{ open: isFmDropdownOpen }" @click.stop="toggleFmDropdown">
                         <div class="tit">FAMILY SITE</div>
-                        <div class="dropdown-contents">
-                            <ul>
-                                <li v-for="(item, index) in familySite" :key="index">
-                                    <a :href="item.link">{{ item.name }}</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul class="dropdown-contents">
+                            <li v-for="(item, index) in familySite" :key="index">
+                                <a :href="item.link">{{ item.name }}</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
