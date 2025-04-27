@@ -46,25 +46,20 @@
                             <img src="\img\logo.jpg">
                         </a>
                     </h1>
+
                     <div class="nav">
-                        <ul class="dropdown">
-                            <li class="menuEle" v-for="(item, index) in mainMenu" :key="index"
-                                @mouseenter="hoverIndex = index" @mouseleave="hoverIndex = null">
+                        <ul class="dropdown" @mouseenter="isAllDropdownVisible = true"
+                            @mouseleave="isAllDropdownVisible = false">
+                            <li class="menuEle" v-for="(item, index) in mainMenu" :key="index">
                                 <a :href="item.link">{{ item.name }}</a>
-                                <ul class="dropdown-content" v-if="isDropdownVisible.value">
-                                    <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex">
-                                        <template v-if="item.subMenu && item.subMenu.length > 0">
-                                            <div class="submenu-group">
-                                                <div class="submenu-title">{{ item.name }}</div>
-                                                <ul>
-                                                    <li v-for="(subItem, j) in item.subMenu" :key="j">
-                                                        <a :href="subItem.link">{{ subItem.name }}</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </template>
-                                    </li>
-                                </ul>
+                                <div class="dropdown-content" v-show="isAllDropdownVisible"
+                                    @mouseenter="isAllDropdownVisible = true">
+                                    <ul>
+                                        <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex">
+                                            <a :href="subItem.link">{{ subItem.name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -190,7 +185,7 @@ const toggleDropdown = () => {
 // all_btn hamburger
 const isOpen = ref(false);
 // hover
-const isDropdownVisible = ref(false);
+const isAllDropdownVisible = ref(false);
 </script>
 
 <style>
@@ -225,9 +220,5 @@ const isDropdownVisible = ref(false);
     font-size: 11px;
     color: #000;
     background: url(/img/lang_arr.gif) no-repeat right center;
-}
-
-.display-non {
-    display: none;
 }
 </style>
