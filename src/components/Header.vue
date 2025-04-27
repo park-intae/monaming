@@ -3,21 +3,19 @@
         <div class="header_top">
             <div class="conwrap">
                 <div class="links">
-                    <div class="langs">
-                        <div class="dropdown">
-                            <div class="dropdown-btn" @click="toggleDropdown()">
-                                <a>
-                                    {{ selectedLang.name }}
-                                </a>
-                            </div>
-                            <div class="dropdown-content" :class="{ on: isDropdownOpen }">
-                                <div v-for="(lang, index) in langs" :key="index" class="dropdown-item">
-                                    <a href="#">
-                                        {{ lang.name }}
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="langs" :class="{ on: isDropdownOpen }" @click="toggleDropdown()">
+                        <div class="this_lang">
+                            <a>
+                                {{ selectedLang.name }}
+                            </a>
                         </div>
+                        <ul>
+                            <li v-for="(lang, index) in langs" :key="index">
+                                <a href="#">
+                                    {{ lang.name }}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="sns">
                         <ul>
