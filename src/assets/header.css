@@ -123,6 +123,18 @@
 /* header_menu */
 
 /* gnb */
+.gnb {
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.gnb .logo {
+  position: absolute;
+  top: 1px;
+}
+
 .gnb .nav {
   width: calc(100% - 162px - 66px);
   display: flex;

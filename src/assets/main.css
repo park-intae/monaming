@@ -18,6 +18,11 @@ li {
   margin-left: 7px;
 }
 
+img {
+  vertical-align: middle;
+  border: 0 none;
+}
+
 .conwrap {
   max-width: 1400px;
   width: 100%;

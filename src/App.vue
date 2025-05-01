@@ -3,7 +3,7 @@ import { onMounted, onUnmounted } from 'vue';
 import { useUIStore } from './stores/uiStore';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import Main_product from './components/Main/Main_product.vue';
+import body_product from './components/Main/body_product.vue';
 
 const uiStore = useUIStore();
 
@@ -27,7 +27,7 @@ onUnmounted(() => {
 
         <main>
             시작
-            <Main_product />
+            <body_product />
             끝
         </main>
 

@@ -2,17 +2,23 @@
     <div class="sub_contents1">
         <ul class="sub_cate">
             <li v-for="(item, index) in subcate" :key="index">
-                <p>{{ item.name }}</p>
+                <a>{{ item.name }}</a>
             </li>
         </ul>
         <div class="product_list">
             <ul>
                 <li v-for="product in paginatedProducts" :key="product.id" @click="selectProduct(product)">
-                    <div class="img_wrap">
+                    <div class="thum">
                         <img :src="`/img/${product.img}`" alt="상품이미지" />
+                        <div class="ondiv">
+                            <div class="btn_plus">
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="product_info">
-                        <p>{{ product.category }}</p>
+                        <p class="cate">{{ product.category }}</p>
                         <p>{{ product.name }}</p>
                     </div>
                 </li>
