@@ -1,82 +1,84 @@
 <template>
-    <div id="header">
-        <div class="header_top">
-            <div class="conwrap">
-                <div class="links">
-                    <div class="langs" :class="{ on: isDropdownOpen }" @click="toggleDropdown()">
-                        <div class="this_lang">
-                            <a>
-                                {{ selectedLang.name }}
-                            </a>
-                        </div>
-                        <ul>
-                            <li v-for="(lang, index) in langs" :key="index">
-                                <a href="#">
-                                    {{ lang.name }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="sns">
-                        <ul>
-                            <li v-for="(item, index) in sns" :key="index">
-                                <a :href="item.link" target="_blank" rel="noopener noreferrer">
-                                    <img :src="item.icon" :alt="item.name" />
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="topMenu">
-                    <ul>
-                        <li v-for="(item, index) in topMenu" :key="index">
-                            <a :href="item.link">{{ item.name }}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="header_menu">
-            <div class="gnb">
+    <teleport to="body">
+        <div id="header">
+            <div class="header_top">
                 <div class="conwrap">
-                    <h1 class="logo">
-                        <a href="#">
-                            <img src="\img\logo.jpg">
-                        </a>
-                    </h1>
-
-                    <div class="nav">
-                        <ul class="dropdown" @mouseenter="isAllDropdownVisible = true"
-                            @mouseleave="isAllDropdownVisible = false">
-                            <li class="menuEle" v-for="(item, index) in mainMenu" :key="index">
+                    <div class="links">
+                        <div class="langs" :class="{ on: isDropdownOpen }" @click="toggleDropdown()">
+                            <div class="this_lang">
+                                <a>
+                                    {{ selectedLang.name }}
+                                </a>
+                            </div>
+                            <ul>
+                                <li v-for="(lang, index) in langs" :key="index">
+                                    <a href="#">
+                                        {{ lang.name }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sns">
+                            <ul>
+                                <li v-for="(item, index) in sns" :key="index">
+                                    <a :href="item.link" target="_blank" rel="noopener noreferrer">
+                                        <img :src="item.icon" :alt="item.name" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="topMenu">
+                        <ul>
+                            <li v-for="(item, index) in topMenu" :key="index">
                                 <a :href="item.link">{{ item.name }}</a>
-                                <div class="dropdown-content" v-show="isAllDropdownVisible"
-                                    @mouseenter="isAllDropdownVisible = true">
-                                    <ul>
-                                        <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex">
-                                            <a :href="subItem.link">{{ subItem.name }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
                         </ul>
                     </div>
-                    <div class="toolbar">
-                        <div class="all_btn" :class="{ open: isOpen }" @click="isOpen = !isOpen">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div class="search">
-                            <a>
-                                <img src="\img\btn_search.gif" alt="search" />
+                </div>
+            </div>
+            <div class="header_menu">
+                <div class="gnb">
+                    <div class="conwrap">
+                        <h1 class="logo">
+                            <a href="#">
+                                <img src="\img\logo.jpg">
                             </a>
+                        </h1>
+
+                        <div class="nav">
+                            <ul class="dropdown" @mouseenter="isAllDropdownVisible = true"
+                                @mouseleave="isAllDropdownVisible = false">
+                                <li class="menuEle" v-for="(item, index) in mainMenu" :key="index">
+                                    <a :href="item.link">{{ item.name }}</a>
+                                    <div class="dropdown-content" v-show="isAllDropdownVisible"
+                                        @mouseenter="isAllDropdownVisible = true">
+                                        <ul>
+                                            <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex">
+                                                <a :href="subItem.link">{{ subItem.name }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="toolbar">
+                            <div class="all_btn" :class="{ open: isOpen }" @click="isOpen = !isOpen">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="search">
+                                <a>
+                                    <img src="\img\btn_search.gif" alt="search" />
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </teleport>
 </template>
 
 <script setup>
