@@ -1,5 +1,7 @@
 #container {
+  overflow: hidden;
   margin-top: 148px;
+  padding: 0 0 150px 0;
 }
 
 .page-tit {

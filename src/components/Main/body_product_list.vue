@@ -25,14 +25,12 @@
             </ul>
         </div>
         <div class="pagination">
-            <button @click="prevPage" :disabled="currentPage === 1">&lt;</button>
-            <div class="pagination_num">
-                <button v-for="page in totalPages" :key="page" @click="goToPage(page)"
-                    :class="{ active: currentPage === page }">
-                    {{ page }}
-                </button>
+            <div class="pagePre" @click="prevPage" :disabled="currentPage === 1">&lt;</div>
+            <div class="pagination_num" v-for="page in totalPages" :key="page" @click="goToPage(page)"
+                :class="{ active: currentPage === page }">
+                {{ page }}
             </div>
-            <button @click="nextPage" :disabled="currentPage === totalPages">&gt;</button>
+            <div class="pageNext" @click="nextPage" :disabled="currentPage === totalPages">&gt;</div>
         </div>
     </div>
 </template>
