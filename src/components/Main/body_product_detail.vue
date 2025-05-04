@@ -3,74 +3,83 @@
         <div class="product_view">
             <div class="conwrap">
                 <div class="product_info">
-                    <div class="bgarea"></div>
+                    <div class="bgarea"></div> <!-- p_info_list 배경용 div-->
                     <div class="numbering">
-                        {{ selectedIndex + 1 }} / {{ mergedProduct.thumb?.length || 0 }}
+                        <span>{{ (selectedIndex + 1).toString().padStart(2, '0') }}</span>
+                        /
+                        <span>{{ (mergedProduct.thumb?.length || 0).toString().padStart(2, '0') }}</span>
                     </div>
-                    <div class="p_gall">
-                        <div class="big">
-                            <div class="tprev">
-                                <img :src="`/img/${bigImage}`" />
+                    <div class="products">
+                        <div class="p_gall">
+                            <div class="big">
+                                <div class="tprev">
+                                    <img :src="`/img/${bigImage}`" />
+                                </div>
+                            </div>
+                            <div class="thumb">
+                                <div class="tprev">
+                                    <img src="/img/tprev.gif" />
+                                </div>
+                                <div class="tnext">
+                                    <img src="/img/tnext.gif" />
+                                </div>
+                                <div class="small_thumb_wrap">
+                                    <ul>
+                                        <li v-for="(item, index) in mergedProduct.thumb" :key="index"
+                                            @click="setBigImage(item.url, index)">
+                                            <img :src="`/img/${item.url}`" />
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="small_thumb_wrap">
-                            <ul>
-                                <li v-for="(item, index) in mergedProduct.thumb" :key="index"
-                                    @click="setBigImage(item.url, index)">
-                                    <img :src="`/img/${item.url}`" />
-                                </li>
-                            </ul>
-                            <div class="tnext">
-                                <div class="p_name">
-                                    <div class="pname">
-                                        {{ mergedProduct.name }}
-                                    </div>
-                                    <div class="cate">
-                                        {{ mergedProduct.category }}
-                                    </div>
+                        <div class="p_info">
+                            <div class="p_name">
+                                <div class="pname">
+                                    {{ mergedProduct.name }}
                                 </div>
-                                <div class="info_list">
-                                    <div class="key_features">
-                                        <div class="tit">KEY FEATURES</div>
-                                        <ol v-if="parsedKeyFeatures && parsedKeyFeatures.length">
-                                            <ul v-for="(feature, index) in parsedKeyFeatures" :key="index">
-                                                {{ feature.text }}
-                                            </ul>
-                                        </ol>
-                                    </div>
-                                    <div class="ink_color" v-if="mergedProduct.ink_color?.length">
-                                        <div class="tit">INK COLOR</div>
-                                        <div class="color_list">
-                                            <div class="color_chip" v-for="(color, index) in mergedProduct.ink_color"
-                                                :key="index" :style="{ backgroundColor: color.code }">
-                                                {{ color.name }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="body_color" v-if="mergedProduct.body_color?.length">
-                                        <div class="tit">BODY COLOR</div>
-                                        <div class="color_list">
-                                            <div class="color_chip" v-for="(color, index) in mergedProduct.body_color"
-                                                :key="index" :style="{ backgroundColor: color.code }">
-                                                {{ color.name }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="download" v-if="mergedProduct.download?.length">
-                                        <div class="tit">DOWNLOAD</div>
-                                        <div class="download_btn" v-for="(file, index) in mergedProduct.download"
-                                            :key="index" @click="window.open(file.url, '_blank')">
-                                            {{ file.name }}
+                                <div class="cate">
+                                    {{ mergedProduct.category }}
+                                </div>
+                            </div>
+                            <div class="info_list">
+                                <div class="key_features">
+                                    <div class="tit">KEY FEATURES</div>
+                                    <ol v-if="parsedKeyFeatures && parsedKeyFeatures.length">
+                                        <ul v-for="(feature, index) in parsedKeyFeatures" :key="index">
+                                            {{ feature.text }}
+                                        </ul>
+                                    </ol>
+                                </div>
+                                <div class="ink_color" v-if="mergedProduct.ink_color?.length">
+                                    <div class="tit">INK COLOR</div>
+                                    <div class="color_list">
+                                        <div class="color_chip" v-for="(color, index) in mergedProduct.ink_color"
+                                            :key="index" :style="{ backgroundColor: color.code }">
+                                            {{ color.name }}
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn_buy">BUY NOW</button>
+                                <div class="body_color" v-if="mergedProduct.body_color?.length">
+                                    <div class="tit">BODY COLOR</div>
+                                    <div class="color_list">
+                                        <div class="color_chip" v-for="(color, index) in mergedProduct.body_color"
+                                            :key="index" :style="{ backgroundColor: color.code }">
+                                            {{ color.name }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="download" v-if="mergedProduct.download?.length">
+                                    <div class="tit">DOWNLOAD</div>
+                                    <div class="download_btn" v-for="(file, index) in mergedProduct.download"
+                                        :key="index" @click="window.open(file.url, '_blank')">
+                                        {{ file.name }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="p_info">
-                        <div></div>
-                    </div>
+                    <button class="btn_buy">BUY NOW</button>
                 </div>
                 <div class="view_btn">
                     <button @click="$emit('go-back')">List</button>
