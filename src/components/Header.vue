@@ -178,9 +178,7 @@ const topMenu = ref([
 const isDropdownOpen = ref(false);
 
 const toggleDropdown = () => {
-    console.log(isDropdownOpen)
     isDropdownOpen.value = !isDropdownOpen.value;
-    console.log(isDropdownOpen)
 };
 // all_btn hamburger
 const isOpen = ref(false);

@@ -82,7 +82,6 @@ const totalPages = computed(() => {
 
 const goToPage = (pageNum) => {
     currentPage.value = pageNum;
-    console.log(`Go to page ${pageNum}`);
 }
 
 const prevPage = () => {

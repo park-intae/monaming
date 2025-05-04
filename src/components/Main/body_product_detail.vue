@@ -5,17 +5,18 @@
                 <div class="product_info">
                     <div class="bgarea"></div>
                     <div class="numbering">
-                        <!-- 나중에 sql로 파일 첨부할 때 subcate에서의 index -->
+                        {{ selectedIndex + 1 }} / {{ mergedProduct.thumb?.length || 0 }}
                     </div>
                     <div class="p_gall">
-                        <div class="big"></div>
-                        <div class="small_thumb_wrap">
+                        <div class="big">
                             <div class="tprev">
-                                <img :src="bigImage" />
+                                <img :src="`/img/${bigImage}`" />
                             </div>
+                        </div>
+                        <div class="small_thumb_wrap">
                             <ul>
                                 <li v-for="(item, index) in mergedProduct.thumb" :key="index"
-                                    @click="setBigImage(item.url)">
+                                    @click="setBigImage(item.url, index)">
                                     <img :src="`/img/${item.url}`" />
                                 </li>
                             </ul>
@@ -83,6 +84,7 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { useProductStore } from '@/stores/productStore';
 
+
 const props = defineProps({
     product: Object,
     onGoBack: Function
@@ -105,16 +107,13 @@ const mergedProduct = computed(() => {
         ? attrArray.reduce((acc, item) => ({ ...acc, ...item.value }), {})
         : {};
 
-    console.log('🚨 product:', props.product);
-    console.log('🚨 productAttributes:', store.productAttributes);
-    console.log('🟢 mergedProduct:', { ...props.product, ...attrObject });
-    console.log(attrObject.thumb);
-
     return {
         ...props.product,
         ...attrObject
     };
 });
+
+// numbering
 
 const thumb = computed(() => attributes.value?.thumb || []);
 
@@ -132,14 +131,25 @@ const parsedKeyFeatures = computed(() => {
     return features;
 });
 
+// 대표 이미지
+
 const bigImage = ref(''); // 대표 이미지 상태
+const selectedIndex = ref(0);
 
-onMounted(() => {
-    bigImage.value = mergedProduct.value.big_thumb || '';
-}); //초기 대표이미지
+watch(
+    () => mergedProduct.value?.thumb,
+    (thumbs) => {
+        if (thumbs?.length) {
+            bigImage.value = thumbs[0].url;
+            selectedIndex.value = 0;
+        }
+    },
+    { immediate: true }
+); //초기 대표이미지 설정
 
-const setBigImage = (url) => {
+const setBigImage = (url, index) => {
     bigImage.value = url;
+    selectedIndex.value = index;
 };
 
 </script>

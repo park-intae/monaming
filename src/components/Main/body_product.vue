@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="container" :style="{ 'padding-bottom': productStore.selectedProduct ? '0px' : '150px' }">
     <div id="contents">
       <div class="page-tit">
         <h2>모나미제품</h2>
@@ -50,13 +50,6 @@ onMounted(async () => {
   product.value = data;
 })
 
-const showDetail = async (product) => {
-  console.log('product 선택됨:', product);
-  const res = await fetch(`/api/product-attributes/${product.Id}`);
-  const data = await res.json();
-  console.log('상세데이터:', data);
-  productStore.selectedProduct = await res.json();
-}
 </script>
 
 <style></style>

@@ -1,0 +1,33 @@
+#container {
+  padding-bottom: 0;
+}
+
+.product_view {
+  width: 100%;
+  overflow: hidden;
+}
+
+.product_view .conwrap {
+  position: relative;
+  width: 1390px;
+  margin: 0 auto;
+  border-left: 1px solid #ddd;
+  padding-left: 9px;
+}
+
+@media (max-width: 1450px) {
+  .product_view .conwrap {
+    position: relative;
+    border-left: 1px solid #ddd;
+    width: 90%;
+    margin: 0 auto;
+    padding-left: 9px;
+  }
+}
+
+.product_info {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  background-color: #fff;
+}
