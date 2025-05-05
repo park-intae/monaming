@@ -42,12 +42,17 @@
                                     {{ mergedProduct.category }}
                                 </div>
                             </div>
+                            <!-- <div class="info_list">
+                                <div :class="mergedProduct.name">
+                                    ㅇㅅㅇ
+                                </div>
+                            </div> -->
                             <div class="info_list">
                                 <div class="key_features">
                                     <div class="tit">KEY FEATURES</div>
                                     <ol v-if="parsedKeyFeatures && parsedKeyFeatures.length">
                                         <ul v-for="(feature, index) in parsedKeyFeatures" :key="index">
-                                            {{ feature.text }}
+                                            -{{ feature.text }}
                                         </ul>
                                     </ol>
                                 </div>
@@ -55,7 +60,8 @@
                                     <div class="tit">INK COLOR</div>
                                     <div class="color_list">
                                         <div class="color_chip" v-for="(color, index) in mergedProduct.ink_color"
-                                            :key="index" :style="{ backgroundColor: color.code }">
+                                            :key="index"
+                                            :style="{ backgroundColor: color.code, width: '43px', height: '42px' }">
                                             {{ color.name }}
                                         </div>
                                     </div>
@@ -64,16 +70,20 @@
                                     <div class="tit">BODY COLOR</div>
                                     <div class="color_list">
                                         <div class="color_chip" v-for="(color, index) in mergedProduct.body_color"
-                                            :key="index" :style="{ backgroundColor: color.code }">
+                                            :key="index"
+                                            :style="{ backgroundColor: color.code, width: '43px', height: '42px' }">
                                             {{ color.name }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="download" v-if="mergedProduct.download?.length">
                                     <div class="tit">DOWNLOAD</div>
-                                    <div class="download_btn" v-for="(file, index) in mergedProduct.download"
-                                        :key="index" @click="window.open(file.url, '_blank')">
-                                        {{ file.name }}
+                                    <div class="download_list">
+                                        <div class="download_btn" v-for="(file, index) in mergedProduct.download"
+                                            :key="index" @click="handleDownload(file)">
+                                            <img :src="`/img/down_type${index + 1}.gif`" />
+                                            {{ file.name }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +110,6 @@ const props = defineProps({
 });
 
 const store = useProductStore();
-
 const attributes = computed(() => store.productAttributes);
 
 onMounted(() => {
@@ -161,6 +170,16 @@ const setBigImage = (url, index) => {
     selectedIndex.value = index;
 };
 
+// 다운로드
+function handleDownload(file) {
+    if (!file || !file.url) {
+        console.error('file이나 url이 유효하지 않습니다:', file);
+        return;
+    }
+
+    console.log(file.url);
+    window.open(file.url, '_blank');
+}
 </script>
 
 <style></style>

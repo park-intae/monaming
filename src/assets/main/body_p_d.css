@@ -144,6 +144,7 @@
 
 .product_info .p_info .info_list {
   position: relative;
+  padding-top: 25px;
 }
 
 .info_list:before {
@@ -155,6 +156,55 @@
   position: absolute;
   left: -65px;
   top: 0;
+}
+
+.info_list > div {
+  margin-bottom: 25px;
+}
+
+.info_list .tit {
+  padding-left: 13px;
+  background: url(/img/list_bg2.gif) no-repeat left 8px;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  color: #c40f39;
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.info_list .key_features ul {
+  padding-bottom: 3px;
+}
+
+.info_list .color_list {
+  display: flex;
+}
+
+.info_list .color_list .color_chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-right: 3px;
+  font-size: 10px;
+}
+
+.info_list .download_list {
+  display: flex;
+}
+
+.info_list .download_btn {
+  margin-right: 5px;
+  display: block;
+  width: 146px;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+  background: #f4f4f4;
+  color: #7c7c7c;
+  font-size: 14px;
+  border: 1px solid #ddd;
 }
 
 .product_info .btn_buy {

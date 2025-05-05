@@ -30,6 +30,15 @@ export const useProductStore = defineStore('product', {
       this.selectedProduct = product;
     },
 
+    async fetchAttributes() {
+      try {
+        const res = await fetch('/api/attributes');
+        this.attributes = await res.json();
+      } catch (error) {
+        console.error('속성 목록 불러오기 실패:', error);
+      }
+    },
+
     async fetchProductAttributes(productId) {
       try {
         const res = await fetch(`/api/product-attributes/${productId}`);
