@@ -87,12 +87,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="btn_buy">
+                                <a href="https://brand.naver.com/monami/products/10763169038" target="_blank">
+                                    <img src="/img/btn_buy.gif" />
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <button class="btn_buy">BUY NOW</button>
                 </div>
-                <div class="view_btn">
-                    <button @click="$emit('go-back')">List</button>
+                <div class="view_btns">
+                    <a @click="$emit('go-back')">List</a>
                 </div>
             </div>
         </div>

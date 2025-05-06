@@ -26,9 +26,10 @@
 .product_info {
   width: 100%;
   height: 100%;
-  padding: 0 20px;
+  padding: 0 9px;
   display: flex;
   flex-direction: row;
+  border-left: 1px solid #ddd;
 }
 
 .product_info .bgarea {
@@ -186,6 +187,7 @@
   justify-content: center;
   text-align: center;
   color: white;
+  font-weight: 500;
   margin-right: 3px;
   font-size: 10px;
 }
@@ -210,5 +212,40 @@
 .product_info .btn_buy {
   position: absolute;
   right: 0;
-  bottom: 95px;
+  bottom: 295px;
+}
+
+.product_view .view_btns {
+  margin-bottom: 150px;
+  text-align: center;
+}
+
+@media (max-width: 1450px) {
+  .view_btns {
+    max-width: 1400px;
+    width: 94%;
+    margin: 17px auto;
+    text-align: center;
+    position: relative;
+  }
+}
+
+.view_btns {
+  max-width: 1400px;
+  width: 100%;
+  margin: 17px auto;
+  text-align: center;
+  position: relative;
+}
+
+.product_view .view_btns a {
+  display: inline-block;
+  width: 143px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-family: 'Montserrat';
+  font-size: 15px;
+  color: #fff;
+  background: #c40f39;
 }

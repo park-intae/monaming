@@ -24,16 +24,15 @@ onUnmounted(() => {
 <template>
     <div>
         <Header />
-
         <main>
-            시작
             <body_product />
-            끝
         </main>
-
         <Footer />
-
-        <div id="top_btn"></div>
+        <div class="top_btn">
+            <a>
+                <img src="/img/btn_top.gif" alt="맨위로" />
+            </a>
+        </div>
     </div>
 </template>
 
@@ -62,5 +61,13 @@ input,
 select,
 textarea {
     vertical-align: middle;
+}
+
+.top_btn {
+    position: fixed;
+    right: 3%;
+    bottom: 30%;
+    z-index: 10000;
+    border: 2px solid #c40f39;
 }
 </style>

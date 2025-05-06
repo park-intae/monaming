@@ -102,7 +102,7 @@
 .family_site .tit::after {
   content: '';
   display: inline-block;
-  padding: 0 13px;
+  padding: 0 3px;
   width: 9px;
   height: 5px;
   background: url(/img/family_arr.png) no-repeat 95% center;
