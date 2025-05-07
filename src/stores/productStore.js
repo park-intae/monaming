@@ -44,14 +44,15 @@ export const useProductStore = defineStore('product', {
         const res = await fetch(`/api/product-attributes/${productId}`);
         const data = await res.json();
 
-        if (data.length > 0) {
-          // const parsed = data[0];
-          // this.productAttributes = parsed.value;
+        console.log('✅ 받아온 data:', data);
 
+        if (data.length > 0) {
           this.productAttributes = [];
 
           for (let i = 0; i < data.length; i++) {
             const item = data[i];
+            console.log('➡️ 각각 item:', item);
+
             this.productAttributes.push({
               attribute: item.attribute_name,
               value: item.value,

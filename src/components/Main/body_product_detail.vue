@@ -42,16 +42,11 @@
                                     {{ mergedProduct.category }}
                                 </div>
                             </div>
-                            <!-- <div class="info_list">
-                                <div :class="mergedProduct.name">
-                                    ㅇㅅㅇ
-                                </div>
-                            </div> -->
                             <div class="info_list">
-                                <div class="key_features">
+                                <div class="key_features" v-if="mergedProduct.key_features?.length">
                                     <div class="tit">KEY FEATURES</div>
-                                    <ol v-if="parsedKeyFeatures && parsedKeyFeatures.length">
-                                        <ul v-for="(feature, index) in parsedKeyFeatures" :key="index">
+                                    <ol>
+                                        <ul v-for="(feature, index) in mergedProduct.key_features" :key="index">
                                             -{{ feature.text }}
                                         </ul>
                                     </ol>
@@ -75,6 +70,10 @@
                                             {{ color.name }}
                                         </div>
                                     </div>
+                                </div>
+                                <div class="point_size" v-if="mergedProduct.point_size?.length">
+                                    <div class="tit">POINT SIZE</div>
+                                    <p>{{ mergedProduct.point_size }}</p>
                                 </div>
                                 <div class="download" v-if="mergedProduct.download?.length">
                                     <div class="tit">DOWNLOAD</div>
@@ -138,20 +137,6 @@ const mergedProduct = computed(() => {
 // numbering
 
 const thumb = computed(() => attributes.value?.thumb || []);
-
-const parsedKeyFeatures = computed(() => {
-    const features = mergedProduct.value?.key_features;
-
-    if (!features) return [];
-
-    // 문자열 배열인 경우
-    if (Array.isArray(features) && typeof features[0] === 'string') {
-        return features.map(text => ({ text }));
-    }
-
-    // 이미 text가 있는 객체 배열인 경우
-    return features;
-});
 
 // 대표 이미지
 

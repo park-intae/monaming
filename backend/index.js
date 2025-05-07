@@ -38,14 +38,27 @@ app.get('/api/products', (req, res) => {
   console.log('products 호출 완료');
 });
 
-//attributes 가져오기
-app.get('/api/attributes', (req, res) => {
-  db.query('select * from attributes', (err, result) => {
-    if (err) return res.status(500).send(err);
-    res.json(result);
-  });
-  console.log('attributes 호출 완료');
-});
+// //index에 따라 attributes 가져오기
+// app.get('/product/:index/attributes', async (req, res) => {
+//   const productIndex = req.params.index;
+
+//   try {
+//     const [rows] = await db.query(
+//       `
+//       SELECT a.name AS attribute_name, pa.value
+//       FROM product_attributes pa
+//       JOIN attributes a ON pa.attribute_index = a.index
+//       WHERE pa.product_index = ?
+//     `,
+//       [productIndex]
+//     );
+
+//     res.json(rows);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Server error');
+//   }
+// });
 
 //products-attributes가져오기
 app.get('/api/product-attributes', (req, res) => {
