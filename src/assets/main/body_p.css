@@ -50,6 +50,14 @@
   width: 233px;
 }
 
+.product_type li.on {
+  background: #c40f39;
+}
+
+.product_type li.on > a {
+  color: #fff;
+}
+
 .product_type li a {
   display: block;
   height: 58px;

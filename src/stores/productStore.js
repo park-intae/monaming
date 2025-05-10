@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
 function parseJSON(value) {
   if (!value) return [];
@@ -15,6 +16,7 @@ export const useProductStore = defineStore('product', {
     products: [],
     selectedProduct: null,
     productAttributes: null,
+    selectedProductType: '프리미엄 펜',
   }),
   actions: {
     async fetchProducts() {
@@ -64,6 +66,11 @@ export const useProductStore = defineStore('product', {
       } catch (error) {
         console.log('제품 속성 불러오기 실패:', error);
       }
+    },
+
+    setSelectedProductType(type) {
+      this.selectedProductType = type;
+      this.selectedProduct = null;
     },
 
     clearProduct() {

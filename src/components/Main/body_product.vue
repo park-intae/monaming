@@ -7,9 +7,6 @@
       </div>
       <div class="pagetaps">
         <ul class="product_type">
-          <!-- <li v-for="(item, index) in productType" :key="index">
-            <a href="#">{{ item.name }}</a>
-          </li> -->
           <li v-for="(item, index) in productType" :key="index"
             :class="{ on: productStore.selectedProductType === item.name }"
             @click="productStore.setSelectedProductType(item.name)">
