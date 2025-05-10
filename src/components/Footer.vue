@@ -1,7 +1,6 @@
 <template>
     <div id="footer">
         <div class="foot">
-
             <!-- 🔹 FOOT POP 모달 영역 -->
             <div class="foot_pop" ref="footPopRef" :style="{ display: modalStore.isOpen ? 'block' : 'none' }">
                 <div class="title" @click.self="closeModal">
@@ -9,8 +8,9 @@
                 </div>
                 <div class="textarea">
                     <div v-show="modalStore.contentType === 'preInfo'">
-                        <p>국무회의는 대통령·국무총리와 15인 이상 30인 이하의 국무위원으로 구성한다. 일반사면을 명하려면 국회의 동의를 얻어야 한다. 모든 국민은 종교의 자유를
-                            가진다.</p>
+                        <p>개인정보처리방침안내입니다</p>
+                        <div>국무회의는 대통령·국무총리와 15인 이상 30인 이하의 국무위원으로 구성한다. 일반사면을 명하려면 국회의 동의를 얻어야 한다. 모든 국민은 종교의 자유를
+                            가진다.</div>
                         <br />
                         <br />
                         <div>대통령은 법률안의 일부에 대하여 또는 법률안을 수정하여 재의를 요구할 수 없다. 국민경제의 발전을 위한 중요정책의 수립에 관하여 대통령의 자문에 응하기
@@ -54,7 +54,6 @@
                     <a @click="closeModal">CLOSE</a>
                 </div>
             </div>
-
             <!-- 🔹 FOOTER 상단 -->
             <div class="foot_top">
                 <h1>
@@ -71,7 +70,6 @@
                     </li>
                 </ul>
             </div>
-
             <!-- 🔹 FOOTER 하단 -->
             <div class="foot_btm">
                 <div class="info">
@@ -99,7 +97,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
