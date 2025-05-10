@@ -1,6 +1,7 @@
 #container {
   overflow: hidden;
   margin-top: 148px;
+  z-index: 100;
 }
 
 .page-tit {
@@ -59,7 +60,7 @@
   border-right: 1px solid #ddd;
 }
 
-.title {
+main .title {
   font-family: 'Montserrat', sans-serif;
   font-size: 38px;
   font-weight: 600;
@@ -68,11 +69,11 @@
   letter-spacing: 2px;
 }
 
-.title .red {
+main .title .red {
   color: #c40f39;
 }
 
-.title::after {
+main .title::after {
   content: '';
   display: block;
   width: 30px;

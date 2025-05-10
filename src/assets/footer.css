@@ -4,6 +4,57 @@
   padding: 0 3%;
 }
 
+.foot_pop {
+  display: block;
+  width: 1280px;
+  border-top: 5px solid #c40f39;
+  padding: 75px 60px;
+  position: absolute;
+  left: 50%;
+  bottom: 40%;
+  z-index: 3500;
+  margin-left: -700px;
+  background: #f8f8f8;
+}
+
+.foot_pop .title {
+  margin-bottom: 65px;
+  text-align: center;
+  font-size: 29px;
+  color: #c40f39;
+}
+
+.foot_pop .blank .textarea {
+  height: 260px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.foot_pop .textarea {
+  border: 1px solid #ddd;
+  padding: 30px;
+  background: #fff;
+  font-size: 13px;
+  color: #777;
+  word-break: keep-all;
+}
+
+.foot_pop .btn_close {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.foot_pop .btn_close a {
+  display: inline-block;
+  width: 130px;
+  height: 48px;
+  text-align: center;
+  line-height: 48px;
+  background: #c40f39;
+  color: #fff;
+  font-size: 14px;
+}
+
 .foot_top {
   width: 100%;
   padding-bottom: 25px;
