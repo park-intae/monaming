@@ -3,82 +3,13 @@
         <div id="header">
             <div class="header_top">
                 <div class="conwrap">
-                    <div class="links">
-                        <div class="langs" :class="{ on: isDropdownOpen }" @click="toggleDropdown()">
-                            <div class="this_lang">
-                                <a>
-                                    {{ selectedLang.name }}
-                                </a>
-                            </div>
-                            <ul>
-                                <li v-for="(lang, index) in langs" :key="index">
-                                    <a href="#">
-                                        {{ lang.name }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="sns">
-                            <ul>
-                                <li v-for="(item, index) in sns" :key="index">
-                                    <a :href="item.link" target="_blank" rel="noopener noreferrer">
-                                        <img :src="item.icon" :alt="item.name" />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="topMenu">
-                        <ul>
-                            <li v-for="(item, index) in topMenu" :key="index">
-                                <a :href="item.link">{{ item.name }}</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <HeaderTop :langs="langs" :sns="sns" :topMenu="topMenu" />
                 </div>
             </div>
             <div class="header_menu">
                 <div class="gnb">
                     <div class="conwrap">
-                        <h1 class="logo">
-                            <a href="#">
-                                <img src="\img\logo.jpg">
-                            </a>
-                        </h1>
-                        <div class="nav">
-                            <ul class="dropdown" @mouseenter="isAllDropdownVisible = true"
-                                @mouseleave="isAllDropdownVisible = false">
-                                <li class="menuEle" v-for="(item, index) in mainMenu" :key="index"
-                                    :class="{ on: hoveredIndex === index }" @mouseenter="hoveredIndex = index"
-                                    @mouseleave="hoveredIndex = null">
-                                    <a :href="item.link">{{ item.name }}</a>
-                                    <div class="dropdown-content" v-show="isAllDropdownVisible"
-                                        @mouseenter="isAllDropdownVisible = true">
-                                        <ul>
-                                            <li v-for="(subItem, subIndex) in item.subMenu" :key="subIndex"
-                                                :class="{ on: hoveredSubIndex === subIndex && hoveredIndex === index }"
-                                                @mouseenter="hoveredSubIndex = subIndex"
-                                                @mouseleave="hoveredSubIndex = null">
-                                                <a :href="subItem.link">{{
-                                                    subItem.name }}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="toolbar">
-                            <div class="all_btn" :class="{ open: isOpen }" @click="isOpen = !isOpen">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                            <div class="search">
-                                <a>
-                                    <img src="\img\btn_search.gif" alt="search" />
-                                </a>
-                            </div>
-                        </div>
+                        <HeaderMenu :mainMenu="mainMenu" />
                     </div>
                 </div>
             </div>
@@ -87,18 +18,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import HeaderTop from './Header/HeaderTop.vue'
+import HeaderMenu from './Header/HeaderMenu.vue'
+import { ref } from 'vue'
 
-const props = defineProps({
-    langs: {
-        type: Array,
-        default: () => [
-            { emoji: '🇰🇷', name: 'KOR' },
-            { emoji: '🇺🇸', name: 'ENG' },
-        ],
-    }
-})
-// mainMenu
+const langs = ref([{ name: 'KOR' }, { name: 'ENG' }])
+const sns = ref([
+    { name: 'Facebook', icon: '/img/sns_facebook.gif', link: '#' },
+    { name: 'Instagram', icon: '/img/sns_insta.gif', link: '#' },
+    { name: 'YouTube', icon: '/img/sns_youtube.png', link: '#' }
+])
+const topMenu = ref([
+    { name: 'HOME', link: '#' },
+    { name: 'SITE MAP', link: '#' },
+    { name: 'CONTACT US', link: '#' }
+])
 const mainMenu = ref([
     {
         name: '모나미소개',
@@ -159,42 +93,8 @@ const mainMenu = ref([
             { name: "산업용 맞춤 개발발", link: '#' },
         ]
     },
-]);
-//lang
-const selectedLang = ref({ //기본 언어
-    name: 'KOR'
-});
-const langs = ref([
-    { name: 'ENG' },
-]);
-// sns
-const sns = ref([
-    { name: 'Facebook', icon: '/img/sns_facebook.gif', link: '#' },
-    { name: 'Instagram', icon: '/img/sns_insta.gif', link: '#' },
-    { name: 'YouTube', icon: '/img/sns_youtube.png', link: '#' }
-]);
-// topMenu
-const topMenu = ref([
-    { name: 'HOME', link: '#' },
-    { name: 'SITE MAP', link: '#' },
-    { name: 'CONTACT US', link: '#' },
-]);
-// dropdown
-const isDropdownOpen = ref(false);
-
-const toggleDropdown = () => {
-    isDropdownOpen.value = !isDropdownOpen.value;
-};
-// all_btn hamburger
-const isOpen = ref(false);
-// hover
-const isAllDropdownVisible = ref(false);
-
-const hoveredIndex = ref(null);
-
-const hoveredSubIndex = ref(null);
+])
 </script>
-
 <style>
 .logo {
     float: none;
